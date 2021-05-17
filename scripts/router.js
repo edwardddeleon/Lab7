@@ -62,7 +62,7 @@ router.setState = function(page, back) {
     body.className = "single-entry";
 
     // remove entry page element with old data
-    body.removeChild(document.querySelectorAll("entry-page")[0]);
+    body.removeChild(document.getElementsByTagName("entry-page"));
 
     // create entryPageElement
     let entryPageElem = document.createElement("entry-page");
