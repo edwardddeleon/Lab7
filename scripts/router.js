@@ -9,7 +9,7 @@ var body = document.querySelector("body");
 /**
  * Changes the "page" (state) that your SPA app is currently set to
  */
-router.setState = function(page) {
+router.setState = function(page, back) {
   /**
    * - There are three states that your SPA app will have
    *    1. The home page
@@ -48,8 +48,10 @@ router.setState = function(page) {
     // change class
     body.className = "";
 
-    // push state to history
-    history.pushState(page, "", location.origin);
+    // push state to history if state didn't change because of back button
+    if(!back) {
+      history.pushState(page, "", location.origin);
+    }
   }
   // entry page
   else if(page.state == "entry") {
@@ -71,9 +73,10 @@ router.setState = function(page) {
     // reinsert new entry page element
     body.appendChild(entryPageElem);
 
-    // push state to history
-    history.pushState(page, "", "#entry" + page.id);
-
+    // push state to history if state didn't change because of back button
+    if(!back) {
+      history.pushState(page, "", "#entry" + page.id);
+    }
   }
   // settings page
   else if(page.state == "settings") {
@@ -83,7 +86,9 @@ router.setState = function(page) {
     // change class
     body.className = "settings";
 
-    // push state to history
-    history.pushState(page, "", "#settings");
+    // push state to history if state didn't change because of back button
+    if(!back) {
+      history.pushState(page, "", "#settings");
+    }
   }
 }
